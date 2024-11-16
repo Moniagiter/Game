@@ -75,13 +75,13 @@
 |        Ship (interface)    |
 |----------------------------|
 | + isHit(x: int, y: int):   |
-| boolean                    |
+|   boolean                  |
 | + isSunk(): boolean        |
 | + getCoordinates():        |
-| List<int[]>                |
+|   List<int[]>              |
 |----------------------------|
            ^
-           |implements
+           | implements
            |
 |----------------------------|
 |     ShipRealization        |
@@ -91,12 +91,11 @@
 | - hits: int                |
 |----------------------------|
 | + isHit(x: int, y: int):   |
-| boolean                    |
+|   boolean                  |
 | + isSunk(): boolean        |
 | + getCoordinates():        | 
-| List<int[]>                |
+|   List<int[]>              |
 |----------------------------|
-
 
 
 |----------------------------|
@@ -105,8 +104,8 @@
 | - size: int                |
 | - grid: char[][]           |
 |----------------------------|
-| + updateGrid(x: int, y:int,|
-| symbol: char): void        |
+| + updateGrid(x: int, y: int,|
+|   symbol: char): void      |
 | + display(): void          |
 |----------------------------|
            ^
@@ -114,19 +113,8 @@
            |
 
 |----------------------------|   
-|           Game             |      
-|----------------------------|
-| + startGame(): void        |      
-| + playTurn(): void         |     
-|----------------------------|      
-           | Reads from
-           v
-
-|----------------------------|
 |       PlayerInput          |
 |----------------------------|
 | + getCoordinates(): int[]  |
 |----------------------------|
 
-
----
