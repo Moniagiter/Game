@@ -63,58 +63,52 @@
 
 ## 4. UML-діаграма
 
-|----------------------------|   
-|           Game             |      
-|----------------------------|
-| + startGame(): void        |      
-| + playTurn(): void         |     
-|----------------------------|      
-           | manages
-           v
-|----------------------------|
-|        Ship (interface)    |
-|----------------------------|
-| + isHit(x: int, y: int):   |
-|   boolean                  |
-| + isSunk(): boolean        |
-| + getCoordinates():        |
-|   List<int[]>              |
-|----------------------------|
-           ^
-           | implements
-           |
-|----------------------------|
-|     ShipRealization        |
-|----------------------------|
-| - size: int                |
-| - coordinates: List<int[]> |
-| - hits: int                |
-|----------------------------|
-| + isHit(x: int, y: int):   |
-|   boolean                  |
-| + isSunk(): boolean        |
-| + getCoordinates():        | 
-|   List<int[]>              |
-|----------------------------|
+## 4. UML-діаграма
 
+### Game
+| Game                      |
+|---------------------------|
+| + startGame(): void       |
+| + playTurn(): void        |
 
-|----------------------------|
-|           Grid             |
-|----------------------------|
-| - size: int                |
-| - grid: char[][]           |
-|----------------------------|
-| + updateGrid(x: int, y: int,|
-|   symbol: char): void      |
-| + display(): void          |
-|----------------------------|
-           ^
-           | uses
-           |
+**manages**
 
-|----------------------------|   
-|       PlayerInput          |
-|----------------------------|
-| + getCoordinates(): int[]  |
-|----------------------------|
+### Ship (interface)
+| Ship (interface)          |
+|---------------------------|
+| + isHit(x: int, y: int): boolean |
+| + isSunk(): boolean       |
+| + getCoordinates(): List<int[]> |
+
+**implements**
+
+### ShipRealization
+| ShipRealization           |
+|---------------------------|
+| - size: int               |
+| - coordinates: List<int[]>|
+| - hits: int               |
+|---------------------------|
+| + isHit(x: int, y: int): boolean |
+| + isSunk(): boolean       |
+| + getCoordinates(): List<int[]> |
+
+**uses**
+
+### Grid
+| Grid                      |
+|---------------------------|
+| - size: int               |
+| - grid: char[][]          |
+|---------------------------|
+| + updateGrid(x: int, y: int, symbol: char): void |
+| + display(): void         |
+
+**reads from**
+
+### PlayerInput
+| PlayerInput               |
+|---------------------------|
+| + getCoordinates(): int[] |
+
 
