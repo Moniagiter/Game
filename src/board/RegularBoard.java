@@ -1,9 +1,10 @@
+package board;
 
-public class Grid {
+public class RegularBoard implements Board {
     private final int size;
     private final char[][] grid;
 
-    public Grid(int size) {
+    public RegularBoard(int size) {
         this.size = size;
         this.grid = new char[size][size];
         for (int i = 0; i < size; i++) {
@@ -13,10 +14,7 @@ public class Grid {
         }
     }
 
-    public void updateGrid(int x, int y, char symbol) {
-        grid[x][y] = symbol;
-    }
-
+    @Override
     public void display() {
         System.out.print("  ");
         for (int i = 1; i <= size; i++) {
@@ -31,7 +29,9 @@ public class Grid {
             System.out.println();
         }
     }
+
+    public void updateGrid(int x, int y, char symbol) {
+        grid[x][y] = symbol;
+    }
 }
-
-
 
