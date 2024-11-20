@@ -3,18 +3,21 @@ package Game;
 import board.Board;
 import board.RegularBoard;
 import generator.RandomBoardGenerator;
-import player.ConsolePlayer;
+import player.Player;
 import ships.Ship;
+import player.ConsolePlayer;
 
 import java.util.List;
 
 public class Game {
     private final Board grid;
     private final List<Ship> ships;
+    private final Player player;
 
-    public Game(Board grid, List<Ship> ships) {
+    public Game(Board grid, List<Ship> ships, Player player) {
         this.grid = grid;
         this.ships = ships;
+        this.player = player;
     }
 
     public void startGame() {
@@ -29,7 +32,7 @@ public class Game {
 
     public void playTurn() {
         try {
-            int[] coords = new ConsolePlayer().getCoordinates();
+            int[] coords = player.getCoordinates();
             int x = coords[0];
             int y = coords[1];
             boolean hit = false;
@@ -57,7 +60,7 @@ public class Game {
     }
 
     public static void main(String[] args) {
-        Game game = new Game(new RegularBoard(10), new RandomBoardGenerator(10).generate());
+        Game game = new Game(new RegularBoard(10), new RandomBoardGenerator(10).generate(), new ConsolePlayer());
         game.startGame();
     }
 }

@@ -15,26 +15,20 @@ public class RandomBoardGenerator implements BoardGenerator {
         this.gridSize = gridSize;
         this.random = new Random();
     }
-
     @Override
     public List<Ship> generate() {
         List<Ship> ships = new ArrayList<>();
-
         // Розмір кораблів
         int[] shipSizes = {2, 3, 4};
-
         // Спроба додати кораблі
         for (int size : shipSizes) {
             boolean placed = false;
-
             while (!placed) {
                 // Випадковий початок корабля
                 int x = random.nextInt(gridSize);
                 int y = random.nextInt(gridSize);
-
                 // Випадковий напрямок (0 - горизонтальний, 1 - вертикальний)
                 boolean isHorizontal = random.nextBoolean();
-
                 // Перевірка, чи можна додати корабель
                 if (canPlaceShip(x, y, size, isHorizontal, ships)) {
                     List<int[]> coordinates = new ArrayList<>();
@@ -60,7 +54,6 @@ public class RandomBoardGenerator implements BoardGenerator {
             if (newX < 0 || newX >= gridSize || newY < 0 || newY >= gridSize) {
                 return false;
             }
-
             // Перевірка перетину з іншими кораблями
             for (Ship ship : ships) {
                 for (int[] coord : ship.getCoordinates()) {
