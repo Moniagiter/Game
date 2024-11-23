@@ -76,25 +76,64 @@
 
 ## 3. UML-діаграма
  ```plaintext 
-|----------------------------|   
-|           Game             |      
-|----------------------------|
-| + startGame(): void        |      
-| + playTurn(): boolean      |     
-|----------------------------|      
+```plaintext
+|---------------------------------------|   
+|                  Game                 |          
+|---------------------------------------|
+| - humanBoard: HumanBoard              |
+| - computerBoard: ComputerBoard        |
+| - humanShips: List<Ship>              |
+| - computerShips: List<Ship>           |
+| - humanPlayer: Player                 |
+| - computerPlayer: Player              |
+|---------------------------------------|
+| + startGame(): void                   |       
+| + playTurn(player: Player,            |
+|            ships: List<Ship>,         |
+|            board: Board,              |
+|            hitSymbol: char,           |
+|            missSymbol: char,          |
+|            sunkSymbol: char): boolean |
+|---------------------------------------|
+
            | manages
            v
-|----------------------------|
+|------------------------------|
+|        Board (interface)     |
+|------------------------------|
+| + updateGrid(x: int, y: int, |
+|   symbol: char): void        |
+| + display(): void            |
+|------------------------------|
+           ^                     ^
+           |implements           |implements
+           |                     |
+|-----------------------------|   |-----------------------------|
+|        HumanBoard           |   |        ComputerBoard        |
+|-----------------------------|   |-----------------------------|
+| - size: int                 |   | - size: int                 |
+| - grid: char[][]            |   | - grid: char[][]            |
+|-----------------------------|   |-----------------------------|
+| + updateGrid(x: int, y: int,|   | + updateGrid(x: int, y: int,|
+|   symbol: char): void       |   |   symbol: char): void       |
+| + display(): void           |   | + display(): void           |
+|-----------------------------|   |-----------------------------|
+
+           ^
+           | uses
+           v
+
+|----------------------------|   
 |        Ship (interface)    |
 |----------------------------|
 | + isHit(x: int, y: int):   |
-| boolean                    |
+|   boolean                  |
 | + isSunk(): boolean        |
 | + getCoordinates():        |
-| List<int[]>                |
+|   List<int[]>              |
 |----------------------------|
            ^
-           | implements
+           |implements
            |
 |----------------------------|
 |     ShipRealization        |
@@ -104,42 +143,14 @@
 | - hits: int                |
 |----------------------------|
 | + isHit(x: int, y: int):   |
-| boolean                    |
+|   boolean                  |
 | + isSunk(): boolean        |
 | + getCoordinates():        | 
-| List<int[]>                |
-|----------------------------|
-
-
-
-|----------------------------|
-|       HumanBoard           |
-|----------------------------|
-| - size: int                |
-| - grid: char[][]           |
-|----------------------------|
-| + updateGrid(x: int, y:int,|
-| symbol: char): void        |
-| + display(): void          |
+|   List<int[]>              |
 |----------------------------|
 
            ^
            | uses
-           v
-
-|-----------------------------|
-|        ComputerBoard        |
-|-----------------------------|
-| - size: int                 |
-| - grid: char[][]            |
-|-----------------------------|
-| + updateGrid(x: int, y: int,|
-| symbol: char): void         |
-| + display(): void           |
-|-----------------------------|
-
-           ^
-           | Reads from
            v
 
 |-------------------------------|
@@ -150,16 +161,16 @@
 | + onMiss(): void              |
 |-------------------------------|
            ^
-           | implements
+           |implements
            |
 |----------------------------|
-|        ConsolePlayer       |
+|     ConsolePlayer          |
 |----------------------------|
 | + getCoordinates(): int[]  |
 |----------------------------|
 
            ^
-           | implements
+           |implements
            |
 |-------------------------------|
 |        ComputerPlayer         |
