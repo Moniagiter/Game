@@ -1,10 +1,10 @@
 package board;
 
-public class RegularBoard implements Board {
+public class HumanBoard {
     private final int size;
     private final char[][] grid;
 
-    public RegularBoard(int size) {
+    public HumanBoard(int size) {
         this.size = size;
         this.grid = new char[size][size];
         for (int i = 0; i < size; i++) {
@@ -14,13 +14,20 @@ public class RegularBoard implements Board {
         }
     }
 
-    @Override
+    public void updateGrid(int x, int y, char symbol) {
+        if (x < 0 || x >= size || y < 0 || y >= size) {
+            throw new IllegalArgumentException("Некорректные координаты: " + x + ", " + y);
+        }
+        grid[x][y] = symbol;
+    }
+
     public void display() {
         System.out.print("  ");
         for (int i = 1; i <= size; i++) {
             System.out.print(i + " ");
         }
         System.out.println();
+
         for (int i = 0; i < size; i++) {
             System.out.print((char) ('A' + i) + " ");
             for (int j = 0; j < size; j++) {
@@ -29,9 +36,4 @@ public class RegularBoard implements Board {
             System.out.println();
         }
     }
-
-    public void updateGrid(int x, int y, char symbol) {
-        grid[x][y] = symbol;
-    }
 }
-
